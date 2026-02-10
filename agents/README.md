@@ -66,3 +66,11 @@ Todos os agentes seguem os princípios:
 - objetividade
 - foco em engenharia
 - alinhamento com práticas da XP
+
+---
+
+## Referencias
+
+- `rules/` para regras gerais e especificas.
+- `skills/` para skills reutilizaveis.
+- Cada agent pode declarar `Rules relacionadas` e `Skill externa`.
