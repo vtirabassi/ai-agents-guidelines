@@ -73,6 +73,10 @@ Não use marcadores desnecessários em respostas curtas.
 
 ---
 
+## Rules relacionadas (opcional)
+
+- `.opencode/rules/tone.md`
+
 ## Quando usar (opcional)
 
 - Quando houver necessidade de revisar, reescrever ou responder textos em PT-BR.

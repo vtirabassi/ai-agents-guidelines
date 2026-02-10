@@ -1,18 +1,18 @@
-# AI Agents Guidelines
+# opencode-examples
 
-Este repositorio reune agents, skills e rules para uso diario com o OpenCode.
+Repositorio com exemplos praticos de uso de OpenCode, cobrindo agents, skills, rules e subagents.
 
 ## Estrutura
-- `agents/`: definicoes de agentes e template de agent
-- `skills/`: skills reutilizaveis por agentes
-- `rules/`: regras gerais e especificas de uso
+- `docs/`: visao geral e conceitos
+- `.opencode/`: configuracoes e artefatos de agentes
+- `examples/`: exemplos de uso e saidas esperadas
 
-## Uso rapido
-1) Escolha um agent em `agents/`.
-2) Forneca contexto claro (arquivos, linhas, diff).
-3) Aplique skills em `skills/` quando precisar de processo padrao.
-4) Consulte as rules em `rules/` para manter consistencia.
+## Comecando
+1) Leia `docs/overview.md`.
+2) Explore `.opencode/agents/` e `.opencode/skills/`.
+3) Rode um exemplo em `examples/`.
 
 ## Contribuicao
-- Use `agents/agent-template.md` para novos agents.
-- Siga o frontmatter padrao em todos os agents.
+- Use `.opencode/agents/agent-template.md` para novos agents.
+- Mantenha regras em `.opencode/rules/`.
+- Documente conceitos em `docs/`.

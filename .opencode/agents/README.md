@@ -48,13 +48,14 @@ Use `description` para resumir o papel do agent em uma linha.
 
 ---
 
-## Agentes disponíveis
+## Agentes disponiveis
 
 | Agente            | Objetivo principal                                       |
 |-------------------|----------------------------------------------------------|
 | code-reviewer     | Revisao critica de codigo antes do merge                 |
 | comunicacao       | Revisao e resposta de textos em PT-BR                    |
 | mentor-senior     | Mentoria tecnica e orientacao arquitetural               |
+| onboarding-helper | Guia para onboarding tecnico                             |
 | security-checker  | Identificacao de riscos de seguranca                     |
 
 ---
@@ -71,6 +72,6 @@ Todos os agentes seguem os princípios:
 
 ## Referencias
 
-- `rules/` para regras gerais e especificas.
-- `skills/` para skills reutilizaveis.
+- `.opencode/rules/` para regras gerais e especificas.
+- `.opencode/skills/` para skills reutilizaveis.
 - Cada agent pode declarar `Rules relacionadas` e `Skill externa`.

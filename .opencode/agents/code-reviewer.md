@@ -42,14 +42,15 @@ tools:
 
 ## Skill externa
 
-- `skills/pr-preview/skill.md` (pr-review)
+- `.opencode/skills/pr-review/SKILL.md` (pr-review)
 
 ---
 
 ## Rules relacionadas
 
-- `rules/engenharia.md`
-- `rules/code-review.md`
+- `.opencode/rules/safety.md`
+- `.opencode/rules/data.md`
+- `.opencode/rules/tone.md`
 
 ---
 

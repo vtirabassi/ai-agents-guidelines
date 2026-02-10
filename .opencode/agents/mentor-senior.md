@@ -51,7 +51,8 @@ tools:
 
 ## Rules relacionadas
 
-- `rules/engenharia.md`
+- `.opencode/rules/safety.md`
+- `.opencode/rules/tone.md`
 
 ---
 
