@@ -1,4 +1,4 @@
-# opencode-exampless
+# opencode-examples
 
 Repositorio com exemplos praticos de uso de OpenCode, cobrindo agents, skills, rules e subagents.
 
