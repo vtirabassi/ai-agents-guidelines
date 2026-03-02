@@ -1,8 +1,9 @@
 # Rules
 
-Regras de comportamento e limites operacionais.
+Regras de comportamento, limites operacionais e governanca.
 
 ## Arquivos
-- `.opencode/rules/safety.md`
-- `.opencode/rules/data.md`
-- `.opencode/rules/tone.md`
+- `rules/safety.md`
+- `rules/data.md`
+- `rules/tone.md`
+- `rules/governance.md`
