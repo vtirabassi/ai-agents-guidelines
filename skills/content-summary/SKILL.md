@@ -1,5 +1,5 @@
 ---
-name: resumo-conteudo
+name: content-summary
 description: Resumir materias, textos longos e conteudos de URLs de forma clara, didatica e acionavel. Usar quando o usuario compartilhar texto, artigo, anotacao ou link e pedir resumo, sintese, explicacao rapida, pontos-chave, guia de estudo, perguntas de revisao, flashcards ou plano de estudo.
 ---
 

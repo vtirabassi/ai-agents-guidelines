@@ -1,77 +1,32 @@
-# Agents – OpenCode
+# Agents
 
-Esta pasta contém os **agentes padrão de IA utilizados pelo time de Engenharia da XP**, configurados para uso com o OpenCode.
+Agentes reutilizaveis para padronizar comportamentos de IA no time de engenharia.
 
-Os agentes têm como objetivo:
-- padronizar o uso de IA no time
-- reduzir variação de respostas
-- transformar boas práticas em processo reutilizável
+## Objetivo
+- reduzir variacao de resposta entre pessoas
+- acelerar tarefas recorrentes com qualidade consistente
+- transformar boas praticas em execucao repetivel
 
-Cada agente define:
-- objetivo e skills
-- escopo e nao-escopo
-- forma de resposta e criterios de sucesso
-- quando usar e limites
+## Arquivos
+- `agents/code-reviewer.md`
+- `agents/security-checker.md`
+- `agents/communication.md`
+- `agents/senior-mentor.md`
+- `agents/onboarding-helper.md`
+- `agents/agent-template.md`
+- `agents/governance.md`
 
----
+## Contrato minimo de cada agente
+- Frontmatter valido (`description`, `mode`, `temperature`, `tools`)
+- Objetivo e casos de uso claros
+- Entradas esperadas
+- Forma de resposta esperada
+- Limites e nao-escopo
+- Referencia para `rules/` e `skills/` quando aplicavel
 
-## Como usar
-
-1. Abrir o repositório local
-2. Iniciar o OpenCode
-3. Selecionar o agente desejado
-4. Fornecer contexto explícito (arquivos, linhas, diff)
-5. Interagir de forma iterativa
-6. Validar criticamente todas as sugestões
-
-> A responsabilidade final pela decisão técnica é sempre do engenheiro.
-
----
-
-## Frontmatter padrao
-
-Todos os agents seguem um frontmatter minimo para facilitar a configuracao:
-
-```yaml
----
-description: <descricao curta e objetiva do agent>
-mode: subagent
-temperature: 0.3
-tools:
-  write: false
-  edit: false
-  bash: false
----
-```
-
-Use `description` para resumir o papel do agent em uma linha.
-
----
-
-## Agentes disponiveis
-
-| Agente            | Objetivo principal                                       |
-|-------------------|----------------------------------------------------------|
-| code-reviewer     | Revisao critica de codigo antes do merge                 |
-| comunicacao       | Revisao e resposta de textos em PT-BR                    |
-| mentor-senior     | Mentoria tecnica e orientacao arquitetural               |
-| onboarding-helper | Guia para onboarding tecnico                             |
-| security-checker  | Identificacao de riscos de seguranca                     |
-
----
-
-## Padrões
-
-Todos os agentes seguem os princípios:
-- clareza
-- objetividade
-- foco em engenharia
-- alinhamento com práticas da XP
-
----
-
-## Referencias
-
-- `.opencode/rules/` para regras gerais e especificas.
-- `.opencode/skills/` para skills reutilizaveis.
-- Cada agent pode declarar `Rules relacionadas` e `Skill externa`.
+## Fluxo de evolucao
+1. Copiar `agents/agent-template.md`.
+2. Definir papel e limites de forma objetiva.
+3. Conectar regras e skills relevantes.
+4. Testar com 2-3 cenarios reais.
+5. Ajustar por feedback e publicar em PR curto.

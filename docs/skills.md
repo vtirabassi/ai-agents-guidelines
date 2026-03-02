@@ -19,7 +19,7 @@ Cada skill deve definir:
 - `pr-review`: review tecnico padronizado de PR
 - `incident-triage`: triagem de incidente de producao
 - `task-refinement`: refinamento tecnico de backlog
-- `resumo-conteudo`: resumo didatico e acionavel de textos e URLs
+- `content-summary`: resumo didatico e acionavel de textos e URLs
 
 ## Como criar novas skills
 1. Copiar `skills/_template/`.

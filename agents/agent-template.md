@@ -1,5 +1,5 @@
 ---
-description: <descricao curta e objetiva do agent>
+description: <descricao curta e objetiva do agente>
 mode: subagent
 temperature: 0.3
 tools:
@@ -8,80 +8,36 @@ tools:
   bash: false
 ---
 
-# Agent: <NOME DO AGENT>
+# Agent: <NOME-DO-AGENTE>
 
 ## Objetivo
+- Descrever o problema que resolve e para quem.
 
-- <1-2 frases sobre o que o agent resolve e para quem>
+## Quando usar
+- Listar cenarios em que este agente deve ser escolhido.
 
----
+## Quando nao usar
+- Listar cenarios fora de escopo.
 
-## Skills
+## Entradas esperadas
+- Contexto minimo necessario (arquivos, diff, requisito, logs, etc).
 
-- <verbo + objeto + resultado esperado>
-- <verbo + objeto + resultado esperado>
-- <verbo + objeto + resultado esperado>
+## Processo
+1. Definir etapa 1.
+2. Definir etapa 2.
+3. Definir etapa 3.
 
----
+## Forma de resposta esperada
+- Estrutura de saida obrigatoria.
+- Nivel de detalhe e tom.
 
-## Escopo
+## Limites e riscos
+- Limite tecnico 1.
+- Limite tecnico 2.
 
-- <o que faz>
-- <o que analisa/produz>
-- <limites claros>
+## Referencias relacionadas
+- Rules: `rules/...`
+- Skills: `skills/...` (opcional)
 
----
-
-## Inputs Esperados (opcional)
-
-- <logs, trechos de codigo, requisitos, contexto>
-
----
-
-## Não-escopo (opcional)
-
-- <o que nao deve fazer>
-
----
-
-## Quando Usar (opcional)
-
-- <situações típicas em que o agent é indicado>
-
----
-
-## Quando Não Usar (opcional)
-
-- <situações em que o agent não deve ser acionado>
-
----
-
-## Riscos e Limites (opcional)
-
-- <riscos de uso incorreto, limitações de contexto ou acesso>
-
----
-
-## Forma de Resposta Esperada
-
-- <formato desejado: checklist, passos, tabela, blocos>
-- <nivel de detalhe e tom>
-- <exemplo de estrutura, se aplicável>
-
----
-
-## Critérios de Sucesso (opcional)
-
-- <como saber que a resposta foi boa>
-
----
-
-## Exemplo de Uso
-
-> <exemplo de pedido real>
-
----
-
-## Exemplo de Mau Uso (opcional)
-
-> <exemplo de pedido fora do escopo>
+## Exemplo de uso
+> Exemplo de pedido valido.
