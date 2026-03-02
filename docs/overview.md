@@ -2,86 +2,47 @@
 
 Material introdutorio para engenharia sobre uso pratico de IA com agentes.
 
----
+## Comeco rapido
+Para adocao imediata no time, ler primeiro:
+1. `docs/getting-started.md`
+2. `docs/skills.md`
+3. `docs/agents.md`
+4. `docs/rules.md`
 
 ## Por que falar de IA agora?
+- IA ja esta sendo usada, com ou sem padrao.
+- Sem processo, o risco cresce.
+- Com processo, o ganho escala.
 
-- IA ja esta sendo usada — com ou sem padrao
-- Sem processo, o risco cresce
-- Com processo, o ganho escala
-
-> O ponto nao e se vamos usar IA. E como vamos usar.
-
----
+O ponto nao e se vamos usar IA, e como vamos usar.
 
 ## IA como amplificador, nao substituto
+- IA nao entende o negocio sozinha.
+- IA nao assume responsabilidade.
+- IA nao decide por conta propria.
 
-- IA nao entende o negocio
-- IA nao assume responsabilidade
-- IA nao decide
+O julgamento tecnico continua humano.
 
-O julgamento tecnico continua sendo humano.
-A IA apenas amplifica a capacidade do engenheiro.
-
----
-
-## Casos reais de uso em engenharia
-
-### Code Review
-- Analise de PR
-- Verificacao de padroes, riscos e sugestoes
-
-### Entendimento de codigo legado e escrita tecnica
-- README
-- ADR
-- Documentacao
-- Guias de onboarding
-
-### Debugging e desenvolvimento
-- Apoio na investigacao de erros
-- Apoio no desenvolvimento e testes
-
-### Comunicacao
-- Mensagens claras
-- Alinhamentos tecnicos
-- Respostas objetivas
-
----
+## Casos reais em engenharia
+- Code review de PR.
+- Entendimento de codigo legado e escrita tecnica.
+- Debugging e desenvolvimento.
+- Comunicacao tecnica clara.
 
 ## Por que OpenCode?
+- Trabalha no codigo local.
+- Entende arquivos, historico e diff.
+- Permite padronizar agentes e skills.
 
-- Trabalha diretamente com o codigo local
-- Entende o repositorio: arquivos, historico e diff
-- Permite criar agentes reutilizaveis com proposito claro
-- Facil configuracao no ambiente XP
+Referencia: https://opencode.ai
 
-https://opencode.ai
-
----
-
-## Fluxo de uso no dia a dia (OpenCode)
-
-1. Abrir o repositorio local
-2. Iniciar o OpenCode
-3. Selecionar ou configurar o agente adequado
-4. Referenciar arquivos ou linhas especificas
-5. Interagir com a IA de forma iterativa
-6. Avaliar criticamente as sugestoes
-7. Validar alteracoes com testes e revisao humana
-
-> A IA deve ser utilizada como apoio continuo, nao como execucao automatica.
-
----
-
-## Hands-on
-
-(Secao destinada a demonstracao pratica)
-
----
+## Fluxo de uso no dia a dia
+1. Abrir repositorio local.
+2. Selecionar skill/agent adequado.
+3. Fornecer contexto explicito (arquivos, linhas, diff).
+4. Interagir de forma iterativa.
+5. Validar sugestoes com revisao humana e testes.
 
 ## Referencias
-
-- OpenCode Docs
-  https://opencode.ai/docs
-- Skills no OpenCode
-  https://blog.devgenius.io/writing-opencode-agent-skills-a-practical-guide-with-examples
+- OpenCode Docs: https://opencode.ai/docs
+- Guia de skills: https://blog.devgenius.io/writing-opencode-agent-skills-a-practical-guide-with-examples

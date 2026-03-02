@@ -17,7 +17,6 @@ Cada skill deve definir:
 
 ## Catalogo inicial
 - `pr-review`: review tecnico padronizado de PR
-- `incident-triage`: triagem de incidente de producao
 - `incident-status-report`: status report padronizado de andamento de INC
 - `task-refinement`: refinamento tecnico de backlog
 - `content-summary`: resumo didatico e acionavel de textos e URLs

@@ -40,7 +40,6 @@ skills/<skill-name>/
 
 ## Skills atuais
 - `skills/pr-review/SKILL.md`
-- `skills/incident-triage/SKILL.md`
 - `skills/task-refinement/SKILL.md`
 - `skills/content-summary/SKILL.md`
 - `skills/incident-status-report/SKILL.md`
