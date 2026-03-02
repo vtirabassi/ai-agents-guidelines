@@ -1,18 +1,27 @@
-# opencode-examples
+# ai-agents-guidelines
 
-Repositorio com exemplos praticos de uso de OpenCode, cobrindo agents, skills, rules e subagents.
+Repositorio com padroes praticos para uso de IA em engenharia, cobrindo:
+- `skills/`
+- `rules/`
+- `agents/`
+- `subagents/`
+- `docs/`
 
 ## Estrutura
-- `docs/`: visao geral e conceitos
-- `.opencode/`: configuracoes e artefatos de agentes
-- `examples/`: exemplos de uso e saidas esperadas
+- `skills/`: modulos reutilizaveis para tarefas recorrentes
+- `rules/`: regras globais de comportamento e seguranca
+- `agents/`: perfis de agentes com foco especifico
+- `subagents/`: especializacoes de apoio
+- `docs/`: guias e material de referencia
 
-## Comecando
-1) Leia `docs/overview.md`.
-2) Explore `.opencode/agents/` e `.opencode/skills/`.
-3) Rode um exemplo em `examples/`.
+## Comecando por skills
+1. Ler `docs/skills.md`.
+2. Explorar skills existentes em `skills/`.
+3. Usar `skills/_template/SKILL.md` para criar novas.
+4. Priorizar backlog em `docs/skills-roadmap.md`.
 
 ## Contribuicao
-- Use `.opencode/agents/agent-template.md` para novos agents.
-- Mantenha regras em `.opencode/rules/`.
-- Documente conceitos em `docs/`.
+1. Abrir PR pequeno por skill.
+2. Incluir exemplos de uso real no corpo do PR.
+3. Revisar clareza do gatilho (`description`) e formato de saida.
+4. Evoluir por feedback do time.

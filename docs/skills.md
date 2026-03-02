@@ -1,15 +1,36 @@
 # Skills
 
-## O que sao?
-Skills sao modulos reutilizaveis de instrucoes para tarefas especificas.
+## O que sao
+Skills sao modulos reutilizaveis de instrucoes para tarefas tecnicas recorrentes.
 
-Elas descrevem:
-- Objetivo da tarefa
-- Entradas esperadas
-- Passo a passo de execucao
-- Restricoes e limites
+Cada skill deve definir:
+- o problema que resolve
+- quando deve ser usada
+- entradas minimas
+- fluxo de execucao
+- formato de saida
 
-## Na pratica
-Skills transformam tarefas recorrentes em execucoes padronizadas.
+## Objetivo para engenharia
+- acelerar tarefas repetitivas
+- manter padrao tecnico entre times
+- reduzir retrabalho e respostas inconsistentes
 
-> Skills sao como funcoes bem definidas dentro de um agent.
+## Catalogo inicial
+- `pr-review`: review tecnico padronizado de PR
+- `incident-triage`: triagem de incidente de producao
+- `task-refinement`: refinamento tecnico de backlog
+- `resumo-conteudo`: resumo didatico e acionavel de textos e URLs
+
+## Como criar novas skills
+1. Copiar `skills/_template/`.
+2. Preencher frontmatter (`name`, `description`).
+3. Escrever processo objetivo e acionavel.
+4. Testar com casos reais do time.
+5. Ajustar por feedback e publicar em PR curto.
+
+## Criterio de qualidade
+Uma skill boa deve:
+- ser focada em um problema especifico
+- ter gatilho de uso claro no `description`
+- produzir saida consistente e util
+- evitar suposicoes nao confirmadas
