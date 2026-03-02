@@ -12,14 +12,24 @@ Repositorio com padroes praticos para uso de IA em engenharia, cobrindo:
 - `agents/`: perfis de agentes com foco especifico
 - `docs/`: guias e material de referencia
 
-## Comecando por skills
-1. Ler `docs/skills.md`.
-2. Explorar skills existentes em `skills/`.
-3. Usar `skills/_template/SKILL.md` para criar novas.
-4. Priorizar backlog em `docs/skills-roadmap.md`.
+## Getting Started
+1. Ler `docs/getting-started.md`.
+2. Entender limites e guardrails em `docs/rules.md`.
+3. Escolher perfil em `docs/agents.md`.
+4. Executar tarefa com `docs/skills.md`.
+5. Planejar evolucao com `docs/skills-roadmap.md`.
 
-## Contribuicao
-1. Abrir PR pequeno por skill.
-2. Incluir exemplos de uso real no corpo do PR.
-3. Revisar clareza do gatilho (`description`) e formato de saida.
-4. Evoluir por feedback do time.
+## Governanca
+- Rules: `rules/governance.md`
+- Agents: `agents/governance.md`
+
+## Convencoes de idioma
+- Naming de arquivos/pastas/skills/agents: ingles.
+- Conteudo textual: PT-BR por padrao do time.
+
+## Contribuicao (repo inteiro)
+1. Abrir PR pequeno e objetivo.
+2. Explicar motivacao, impacto esperado e escopo da mudanca.
+3. Incluir exemplo real de uso quando alterar `skills/` ou `agents/`.
+4. Validar consistencia de referencias em `README` e `docs/`.
+5. Atualizar documentacao afetada no mesmo PR.
