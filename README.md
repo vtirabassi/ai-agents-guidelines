@@ -4,14 +4,12 @@ Repositorio com padroes praticos para uso de IA em engenharia, cobrindo:
 - `skills/`
 - `rules/`
 - `agents/`
-- `subagents/`
 - `docs/`
 
 ## Estrutura
 - `skills/`: modulos reutilizaveis para tarefas recorrentes
 - `rules/`: regras globais de comportamento e seguranca
 - `agents/`: perfis de agentes com foco especifico
-- `subagents/`: especializacoes de apoio
 - `docs/`: guias e material de referencia
 
 ## Comecando por skills
