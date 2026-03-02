@@ -43,6 +43,7 @@ skills/<skill-name>/
 - `skills/incident-triage/SKILL.md`
 - `skills/task-refinement/SKILL.md`
 - `skills/content-summary/SKILL.md`
+- `skills/incident-status-report/SKILL.md`
 - `skills/_template/SKILL.md` (base para novas skills)
 
 ## Fluxo de contribuicao recomendado
