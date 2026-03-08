@@ -1,27 +1,30 @@
 ---
 name: task-refinement
-description: Refinar tasks tecnicas em backlog executavel com escopo claro, riscos, dependencias, criterio de aceite e plano de entrega incremental. Usar quando houver card/vaga descricao de demanda e for necessario preparar implementacao para sprint.
+description: Refinar demandas tecnicas em backlog executavel com escopo claro, dependencias mapeadas, riscos, criterio de aceite verificavel e plano incremental de entrega. Use esta skill sempre que houver card pouco claro, requisito incompleto ou necessidade de preparar implementacao para sprint.
 ---
 
 ## Entradas esperadas
 - Descricao inicial da task ou card
 - Objetivo de negocio e impacto esperado
 - Contexto tecnico (sistema afetado, restricoes, arquitetura)
-- Prazo ou janela de entrega
+- Prazo, janela de entrega ou urgencia
+- Dependencias conhecidas (times, sistemas, aprovacoes), se houver
 
 ## Processo
 1. Reescrever problema em linguagem objetiva e testavel.
-2. Separar escopo em dentro/fora para evitar expansao.
-3. Quebrar entrega em etapas incrementais pequenas.
-4. Identificar dependencias tecnicas e de negocio.
-5. Mapear riscos e definir mitigacoes praticas.
-6. Definir criterio de aceite funcional e tecnico.
-7. Sugerir plano de validacao (testes, monitoracao, rollout).
+2. Separar escopo em `Dentro` e `Fora` para evitar expansao.
+3. Quebrar a entrega em incrementos pequenos com valor parcial.
+4. Identificar dependencias tecnicas e de negocio, com dono e ordem.
+5. Mapear riscos relevantes e mitigacoes praticas.
+6. Definir criterios de aceite funcionais e tecnicos verificaveis.
+7. Propor validacao, rollout e plano de rollback proporcional ao risco.
+8. Se faltarem dados criticos, listar perguntas objetivas no final.
 
 ## Restricoes
 - Nao assumir requisito inexistente sem marcar como suposicao.
 - Nao gerar plano sem criterio de aceite verificavel.
 - Nao misturar refactor amplo com entrega urgente sem justificativa.
+- Nao deixar dependencias implicitas quando impactarem prazo.
 
 ## Formato de saida
 ### Problema e objetivo
@@ -33,7 +36,7 @@ description: Refinar tasks tecnicas em backlog executavel com escopo claro, risc
 - Fora: ...
 
 ### Plano incremental
-- Etapa 1: ...
+- Etapa 1 (menor entrega viavel): ...
 - Etapa 2: ...
 - Etapa 3: ...
 
@@ -49,3 +52,6 @@ description: Refinar tasks tecnicas em backlog executavel com escopo claro, risc
 - Testes: ...
 - Monitoracao: ...
 - Rollout/rollback: ...
+
+### Perguntas em aberto (se necessario)
+- ...

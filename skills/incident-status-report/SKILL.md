@@ -1,35 +1,34 @@
 ---
 name: incident-status-report
-description: Gerar status report objetivo sobre tratamento de incidente (INC) com formato padronizado de uma linha. Usar quando o usuario pedir atualizacao de incidente, follow-up de INC, resumo de andamento ou status para compartilhamento rapido.
+description: Gerar status report padronizado e objetivo para incidentes (INC), pronto para compartilhamento rapido em canais operacionais. Use esta skill sempre que o usuario pedir atualizacao de incidente, follow-up, resumo de andamento, status de mitigacao, ou mensagem curta para alinhar stakeholders.
 ---
 
 ## Entradas esperadas
-- Numero do INC (ex.: INC12345)
-- Status atual (ex.: Investigando, Mitigado, Resolvido, Monitorando)
-- Problema descrito (sintoma e impacto)
+- Numero do incidente (ex.: `INC12345`)
+- Status atual (`Investigando`, `Mitigado`, `Resolvido`, `Monitorando`)
+- Problema descrito (sintoma + impacto)
 - Analise atual (hipotese, achados, proximo passo)
-- Link do Taylor do INC (opcional)
+- Link do sistema de incidentes (opcional)
 
 ## Processo
-1. Validar se os 4 campos obrigatorios foram informados.
-2. Se houver link do Taylor, usar o conteudo disponivel para preencher ou confirmar os campos.
-3. Se o link nao puder ser acessado ou estiver incompleto, pedir complemento objetivo antes de concluir.
-4. Normalizar texto para manter resposta curta, clara e acionavel.
-5. Entregar o status no formato padrao.
+1. Validar os 4 campos obrigatorios antes de redigir a saida.
+2. Se houver link, usar apenas para confirmar/complementar dados ja informados.
+3. Se o link nao puder ser acessado, continuar com o que ja foi fornecido e sinalizar lacuna objetiva.
+4. Normalizar linguagem para uma frase curta, factual e acionavel.
+5. Priorizar estado atual, impacto real e proximo passo operacional.
+6. Entregar no formato final padronizado.
 
 ## Restricoes
 - Nao inventar dados de incidente.
 - Nao inferir causa raiz sem evidencia.
-- Nao omitir campo obrigatorio.
-- Nao assumir informacao do Taylor quando o acesso ao link falhar.
+- Nao omitir campo obrigatorio sem explicitar o que falta.
+- Nao assumir informacao de link indisponivel.
+- Nao usar linguagem vaga ("aparentemente", "talvez") sem contexto.
 
 ## Formato de saida
-Entregar nesse formato:
+Entregar em uma linha, neste formato:
 
-`<Numero do INC> 
-<Status> 
-<Problema Descrito> 
-<Analisa atual>`
+`<INC> <Status> <Problema descrito> Analisa atual: <analise atual>`
 
 Observacao: usar exatamente o rotulo `Analisa atual` quando o solicitante pedir esse formato literal.
 

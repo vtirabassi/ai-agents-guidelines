@@ -1,59 +1,62 @@
 ---
 name: content-summary
-description: Resumir materias, textos longos e conteudos de URLs de forma clara, didatica e acionavel. Usar quando o usuario compartilhar texto, artigo, anotacao ou link e pedir resumo, sintese, explicacao rapida, pontos-chave, guia de estudo, perguntas de revisao, flashcards ou plano de estudo.
+description: Resumir e estruturar conteudo longo (texto colado, anotacoes, artigos e URLs) de forma clara, fiel e acionavel. Use esta skill sempre que o usuario pedir resumo, sintese, explicacao rapida, guia de estudo, perguntas de revisao, flashcards, plano de estudo, ou quando houver muito conteudo para condensar em pouco tempo.
 ---
 
 ## Entradas esperadas
-- Conteudo em texto, anotacao, artigo ou URL
-- Objetivo do usuario (estudo, trabalho, apresentacao, revisao rapida)
-- Nivel de profundidade desejado (curto, medio, longo)
-- Idioma preferido de resposta (opcional)
+- Conteudo em texto bruto, anotacoes, artigo, documento convertido em texto, ou URL
+- Objetivo principal (estudo, trabalho, apresentacao, revisao rapida, decisao)
+- Nivel de profundidade desejado (`rapido`, `curto`, `medio`, `longo`)
+- Idioma de resposta (se nao informado, seguir o idioma do usuario)
 
 ## Processo
-1. Identificar idioma, tema central e objetivo do usuario.
-2. Se for URL, extrair o conteudo principal e ignorar navegacao, anuncios e rodape.
-3. Se nao conseguir acessar a URL, pedir o texto colado e continuar com o material recebido.
-4. Definir profundidade com base no pedido:
-- `rapido`: no maximo 10 bullets no total
-- `curto`: TL;DR + pontos-chave
-- `medio`: estrutura padrao completa
-- `longo`: estrutura padrao + contexto adicional e exemplos
-5. Adaptar o foco conforme objetivo informado:
-- `prova`: definicoes, comparacoes, pegadinhas e memorizacao
-- `trabalho` ou `apresentacao`: argumentos, dados e narrativa
-6. Entregar a resposta no formato de saida apropriado.
+1. Identificar idioma, tema central, publico e objetivo pratico do usuario.
+2. Se houver URL, extrair apenas o conteudo principal e ignorar navegacao, anuncios, widgets e rodape.
+3. Se a URL nao puder ser acessada, pedir o texto colado e continuar imediatamente com o material disponivel.
+4. Selecionar profundidade:
+- `rapido`: ate 10 bullets totais, foco em decisao imediata
+- `curto`: TL;DR + pontos-chave essenciais
+- `medio`: formato padrao completo
+- `longo`: formato completo + contexto + exemplos concretos
+5. Ajustar foco pelo objetivo:
+- `prova` ou `estudo`: definicoes, comparacoes, memorias de alto valor, perguntas de revisao
+- `trabalho` ou `apresentacao`: argumentos, dados, implicacoes e narrativa
+- `decisao`: riscos, trade-offs e recomendacao objetiva
+6. Preservar sentido original do autor e separar claramente fatos, inferencias e lacunas.
+7. Entregar no formato de saida definido abaixo, com linguagem direta e util.
 
 ## Restricoes
-- Nao inventar fatos ou conclusoes nao suportadas pelo conteudo.
-- Nao distorcer a intencao original do autor.
-- Nao esconder lacunas; explicitar incerteza quando faltar contexto.
-- Nao bloquear a tarefa por falta de acesso a URL se houver texto alternativo.
+- Nao inventar fatos, numeros, fontes ou conclusoes.
+- Nao distorcer a tese original para "simplificar".
+- Nao ocultar incertezas: explicitar em uma linha quando faltar contexto.
+- Nao interromper a tarefa por indisponibilidade de URL se houver texto alternativo.
+- Nao exceder o nivel de detalhe pedido pelo usuario.
 
 ## Formato de saida
-Usar por padrao:
+Use este formato por padrao:
 
 ### TL;DR
-- 2-4 linhas
+- 2-4 linhas com a ideia central e por que importa
 
 ### Pontos-chave
-- 5-10 bullets
+- 5-10 bullets objetivos
 
 ### Conceitos importantes
-- termo: explicacao curta
+- `termo`: explicacao curta e pratica
 
 ### Resumo expandido
-- 1-3 paragrafos
+- 1-3 paragrafos conectando contexto, causa e implicacao
 
-Se o objetivo for estudo ou se o usuario pedir explicitamente:
+Quando o objetivo for estudo (ou quando o usuario pedir):
 
 ### Perguntas de revisao
-- 3-5 perguntas
+- 3-5 perguntas para checagem de entendimento
 
 ### Proximos passos
-- como estudar, aplicar ou aprofundar
+- 3-5 acoes praticas para estudar, aplicar ou aprofundar
 
-## Qualidade e seguranca
-- Preservar precisao e neutralidade.
-- Declarar suposicoes em 1 linha quando houver ambiguidade.
-- Solicitar complemento objetivo quando a base estiver incompleta.
-- Priorizar clareza e utilidade pratica no resultado final.
+## Checklist de qualidade
+- Fidelidade ao conteudo original
+- Clareza sem jargao desnecessario
+- Priorizacao do que gera acao
+- Sinalizacao explicita de limites e lacunas
