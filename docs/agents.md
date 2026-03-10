@@ -20,7 +20,6 @@ Cada agent combina:
 - `security-checker`: triagem de riscos de seguranca
 - `communication`: revisao e escrita de textos em PT-BR
 - `senior-mentor`: apoio a decisoes tecnicas com trade-offs
-- `onboarding-helper`: guia de onboarding tecnico no repo
 - `documentation`: documentacao tecnica completa de fluxos e bootstrapping de contexto inicial
 
 ## Como criar novo agent
