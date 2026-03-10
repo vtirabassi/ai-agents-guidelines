@@ -12,8 +12,8 @@ tools:
   bash: true
 permissions:
   edit:
-    "Context/**/*.md": "allow"
-    "docs/**/*.md": "allow"
+    ".project-docs/context/**/*.md": "allow"
+    ".project-docs/docs/**/*.md": "allow"
     ".gitignore": "allow"
     "**/*.env*": "deny"
     "**/*.key": "deny"
@@ -24,10 +24,10 @@ permissions:
 
 ## Objetivo
 - Criar documentacao tecnica completa de todos os fluxos identificados no codigo.
-- Criar e manter `Context/initial-context.md` como memoria persistente do projeto.
+- Criar e manter `.project-docs/context/initial-context.md` como memoria persistente do projeto.
 
 ## Quando usar
-- `Context/initial-context.md` nao existe (primeira vez no repositorio).
+- `.project-docs/context/initial-context.md` nao existe (primeira vez no repositorio).
 - Usuario solicita documentacao explicitamente.
 - Nova branch criada sem contexto inicial.
 
@@ -44,12 +44,12 @@ permissions:
 1. Analisar projeto: contar arquivos, identificar frameworks, estimar complexidade e tempo.
 2. Comunicar estimativa ao usuario e oferecer opcoes (paralelo vs sequencial).
 3. Para cada fluxo: ler codigo real → documentar com payloads, mapa de integracoes e diagramas Mermaid.
-4. Criar `Context/initial-context.md` referenciando todos os fluxos documentados.
-5. Commitar `Context/` e `docs/` separadamente; adicionar `validar/` ao `.gitignore`.
+4. Criar `.project-docs/context/initial-context.md` referenciando todos os fluxos documentados.
+5. Commitar `.project-docs/` de uma vez; adicionar `validar/` ao `.gitignore`.
 
 ## Forma de resposta esperada
-- Estrutura `docs/` com `README.md`, `architecture.md` e `flows/*.md` (um por fluxo).
-- `Context/initial-context.md` completo com estrutura, tecnologias, padroes e pontos de atencao.
+- Estrutura `.project-docs/docs/` com `README.md`, `architecture.md` e `flows/*.md` (um por fluxo).
+- `.project-docs/context/initial-context.md` completo com estrutura, tecnologias, padroes e pontos de atencao.
 - Confirmacao do checklist de completude ao finalizar.
 
 ## Limites e riscos
