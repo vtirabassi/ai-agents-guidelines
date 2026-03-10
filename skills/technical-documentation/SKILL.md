@@ -1,6 +1,6 @@
 ---
 name: technical-documentation
-description: Criar documentacao tecnica completa de fluxos, arquitetura e contexto inicial a partir do codigo real do repositorio. Use esta skill sempre que o agente de documentacao for acionado ou quando o usuario pedir para documentar um fluxo, criar docs, mapear integracoes, gerar diagrama Mermaid de arquitetura, ou disser coisas como "documenta esse fluxo", "cria a documentacao do projeto", "Context nao existe", "primera vez no repositorio", "mapa de integracoes". Tambem acione quando a tarefa solicitada exigir entender a arquitetura antes de prosseguir.
+description: Criar documentacao tecnica completa de fluxos, arquitetura e contexto inicial a partir do codigo real do repositorio. Use esta skill sempre que o agente de documentacao for acionado ou quando o usuario pedir para documentar um fluxo, criar docs, mapear integracoes, gerar diagrama Mermaid de arquitetura, ou disser coisas como "documenta esse fluxo", "cria a documentacao do projeto", "context nao existe", "primera vez no repositorio", "mapa de integracoes". Tambem acione quando a tarefa solicitada exigir entender a arquitetura antes de prosseguir.
 ---
 
 ## Entradas esperadas
@@ -32,7 +32,7 @@ Muito Grande (> 500)       → 40-90 min | 20+ fluxos
 
 ### Etapa 2 — Comunicar e decidir modo de execucao
 
-Se `Context/initial-context.md` nao existe, comunique ao usuario antes de prosseguir:
+Se `.project-docs/context/initial-context.md` nao existe, comunique ao usuario antes de prosseguir:
 
 ```
 ⚠️ DOCUMENTACAO AUSENTE DETECTADA
@@ -67,7 +67,7 @@ Como prefere que eu proceda?
 
 ```bash
 # Criar estrutura
-mkdir -p Context docs/flows validar
+mkdir -p .project-docs/context .project-docs/docs/flows validar
 
 # Adicionar validar/ ao .gitignore (nao commitar checklists temporarios)
 grep -q "^validar/" .gitignore 2>/dev/null || echo "validar/" >> .gitignore
@@ -77,7 +77,7 @@ grep -q "^validar/" .gitignore 2>/dev/null || echo "validar/" >> .gitignore
 
 **CRITICO: leia o codigo antes de documentar cada fluxo.** Nunca escreva sobre um endpoint, payload ou comportamento que voce nao verificou nos arquivos-fonte. Marque incertezas com `[?]`.
 
-Para cada fluxo identificado, crie `docs/flows/<nome-do-fluxo>.md` com as 7 secoes abaixo:
+Para cada fluxo identificado, crie `.project-docs/docs/flows/<nome-do-fluxo>.md` com as 7 secoes abaixo:
 
 ---
 
@@ -164,7 +164,7 @@ Incluir aspectos operacionais relevantes:
 
 ---
 
-### Etapa 5 — Criar Context/initial-context.md
+### Etapa 5 — Criar .project-docs/context/initial-context.md
 
 Apos documentar todos os fluxos, crie o arquivo de contexto persistente:
 
@@ -178,8 +178,8 @@ Apos documentar todos os fluxos, crie o arquivo de contexto persistente:
 [Mapeamento completo de pastas e arquivos principais com propósito de cada pasta]
 
 ## Fluxos Principais Mapeados
-- [Fluxo 1] - docs/flows/fluxo-1.md
-- [Fluxo N] - docs/flows/fluxo-n.md
+- [Fluxo 1] - .project-docs/docs/flows/fluxo-1.md
+- [Fluxo N] - .project-docs/docs/flows/fluxo-n.md
 
 ## Tecnologias Utilizadas
 | Tech | Versao | Proposito |
@@ -198,14 +198,14 @@ Apos documentar todos os fluxos, crie o arquivo de contexto persistente:
 - Padroes especificos observados
 
 ## Documentacao Detalhada
-Ver `docs/` para documentacao completa dos fluxos.
+Ver `.project-docs/docs/` para documentacao completa dos fluxos.
 ```
 
-### Etapa 6 — Criar docs/README.md e docs/architecture.md
+### Etapa 6 — Criar .project-docs/docs/README.md e .project-docs/docs/architecture.md
 
-**docs/README.md**: Visao geral da solucao, lista de fluxos com links, glossario de termos recorrentes.
+**.project-docs/docs/README.md**: Visao geral da solucao, lista de fluxos com links, glossario de termos recorrentes.
 
-**docs/architecture.md**: Diagrama de arquitetura geral do sistema (todos os servicos, bancos, filas), decisoes arquiteturais e trade-offs observados no codigo.
+**.project-docs/docs/architecture.md**: Diagrama de arquitetura geral do sistema (todos os servicos, bancos, filas), decisoes arquiteturais e trade-offs observados no codigo.
 
 ### Etapa 7 — Commitar
 
@@ -215,7 +215,7 @@ git add .gitignore
 git commit -m "chore: adiciona validar/ ao gitignore"
 
 # Commitar documentacao
-git add Context/ docs/
+git add .project-docs/
 git commit -m "docs: cria estrutura de documentacao e contexto inicial"
 ```
 
@@ -229,17 +229,17 @@ git commit -m "docs: cria estrutura de documentacao e contexto inicial"
 ## Formato de saida
 
 ```
-docs/
-├── README.md                    # Visao geral e index de fluxos
-├── architecture.md              # Diagrama geral do sistema
-└── flows/
-    ├── fluxo-1.md               # 7 secoes obrigatorias
-    └── fluxo-n.md
+.project-docs/
+├── docs/
+│   ├── README.md                    # Visao geral e index de fluxos
+│   ├── architecture.md              # Diagrama geral do sistema
+│   └── flows/
+│       ├── fluxo-1.md               # 7 secoes obrigatorias
+│       └── fluxo-n.md
+└── context/
+    └── initial-context.md           # Memoria persistente do projeto
 
-Context/
-└── initial-context.md           # Memoria persistente do projeto
-
-validar/                         # Local apenas, nao commitado
+validar/                             # Local apenas, nao commitado
 └── checklist.md
 ```
 
@@ -247,7 +247,7 @@ validar/                         # Local apenas, nao commitado
 
 **Cenario**: projeto com 45 arquivos TypeScript, NestJS, documentar fluxo de autenticacao
 
-**Output `docs/flows/autenticacao.md`** (resumido):
+**Output `.project-docs/docs/flows/autenticacao.md`** (resumido):
 
 ```markdown
 # Fluxo de Autenticacao com JWT
@@ -296,16 +296,16 @@ JSON via POST /api/v1/auth/login
 ## Checklist de completude
 Antes de considerar documentacao completa:
 
-- [ ] Pasta `docs/` criada?
-- [ ] Pasta `docs/flows/` criada?
+- [ ] Pasta `.project-docs/docs/` criada?
+- [ ] Pasta `.project-docs/docs/flows/` criada?
 - [ ] TODOS os fluxos identificados estao documentados?
 - [ ] Cada fluxo tem payload de entrada com exemplo?
 - [ ] Cada fluxo tem payload de saida com exemplo?
 - [ ] Cada fluxo tem mapa de integracoes (tabela)?
 - [ ] Cada fluxo tem pelo menos 2 diagramas Mermaid?
-- [ ] `docs/README.md` criado com visao geral?
-- [ ] `docs/architecture.md` criado?
-- [ ] `Context/initial-context.md` criado e completo?
+- [ ] `.project-docs/docs/README.md` criado com visao geral?
+- [ ] `.project-docs/docs/architecture.md` criado?
+- [ ] `.project-docs/context/initial-context.md` criado e completo?
 - [ ] `validar/` adicionado ao `.gitignore`?
 
 ## Anti-padroes
