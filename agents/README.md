@@ -12,7 +12,6 @@ Agentes reutilizaveis para padronizar comportamentos de IA no time de engenharia
 - `agents/security-checker.md`
 - `agents/communication.md`
 - `agents/senior-mentor.md`
-- `agents/onboarding-helper.md`
 - `agents/agent-template.md`
 - `agents/governance.md`
 
