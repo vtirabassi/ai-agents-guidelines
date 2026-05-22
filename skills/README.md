@@ -39,6 +39,7 @@ skills/<skill-name>/
 - Existe criterio de "nao inventar contexto" quando faltar dados?
 
 ## Skills atuais
+- `skills/carrossel-linkedin/SKILL.md`
 - `skills/pr-review/SKILL.md`
 - `skills/task-refinement/SKILL.md`
 - `skills/content-summary/SKILL.md`

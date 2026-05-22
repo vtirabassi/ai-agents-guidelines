@@ -16,6 +16,7 @@ Cada skill deve definir:
 - reduzir retrabalho e respostas inconsistentes
 
 ## Catalogo inicial
+- `carrossel-linkedin`: geracao de carrossel premium para LinkedIn a partir de markdown, texto ou ideias soltas
 - `pr-review`: review tecnico padronizado de PR
 - `incident-status-report`: status report padronizado de andamento de INC
 - `task-refinement`: refinamento tecnico de backlog
