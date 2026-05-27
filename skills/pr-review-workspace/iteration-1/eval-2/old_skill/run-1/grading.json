@@ -1,0 +1,42 @@
+{
+  "eval_id": 2,
+  "run_id": "eval-2-old_skill",
+  "expectations": [
+    {
+      "text": "severity-labels",
+      "passed": true,
+      "evidence": "Usa classificacao nos achados: '(Bloqueador) Sem autenticacao nem autorizacao', '(Bloqueador) Dados de pagamento expostos na resposta bruta', '(Alto) Ausencia de rate limiting', '(Alto) userId nao validado', '(Alto) Ausencia de log de auditoria', '(Medio) Resposta nao e sanitizada', '(Medio) Sem paginacao', '(Baixo) Handler assincrono sem try/catch'"
+    },
+    {
+      "text": "identifies-idor",
+      "passed": true,
+      "evidence": "'qualquer usuario autenticado (ou nao, dependendo do middleware global) pode requisitar os dados de qualquer outro usuario apenas conhecendo o id. Um atacante que enumere IDs consegue exportar dados pessoais, financeiros e enderecos de qualquer conta.'"
+    },
+    {
+      "text": "identifies-sensitive-data",
+      "passed": true,
+      "evidence": "'(Bloqueador) Dados de pagamento expostos na resposta bruta \u2014 paymentMethods retornado diretamente do banco provavelmente inclui numeros de cartao (mesmo que parciais/tokenizados), CVV hasheados, tokens de gateway ou outros dados PCI-DSS. Expor esses campos em um endpoint de exportacao \u2014 sem filtragem explicita \u2014 representa risco legal e de seguranca grave.'"
+    },
+    {
+      "text": "identifies-audit-log",
+      "passed": true,
+      "evidence": "'(Alto) Ausencia de log de auditoria \u2014 a LGPD e boas praticas de compliance exigem rastreabilidade de acesso a dados pessoais. Nao ha nenhum registro de quem solicitou a exportacao, quando e para qual usuario. Sem isso, nao e possivel detectar abuso nem responder a incidentes.'"
+    },
+    {
+      "text": "identifies-auth",
+      "passed": true,
+      "evidence": "'(Bloqueador) Sem autenticacao nem autorizacao no endpoint \u2014 qualquer usuario autenticado (ou nao, dependendo do middleware global) pode requisitar os dados de qualquer outro usuario apenas conhecendo o id.'"
+    },
+    {
+      "text": "concrete-tests",
+      "passed": true,
+      "evidence": "Checklist especifico com itens acionaveis: '[ ] Testar acesso com usuario nao autenticado \u2014 deve retornar 401', '[ ] Testar acesso de usuario autenticado tentando exportar dados de outro usuario \u2014 deve retornar 403', '[ ] Verificar que nenhum campo sensivel (passwordHash, dados PCI) aparece na resposta', '[ ] Verificar que o log de auditoria e gravado em toda requisicao ao endpoint', '[ ] Testar com id invalido (nao-UUID, string vazia, SQL injection basico) \u2014 deve retornar erro controlado, nao 500'"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  }
+}

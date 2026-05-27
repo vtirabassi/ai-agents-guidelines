@@ -1,4 +1,4 @@
-# IA, Agentes e OpenCode
+# IA, Agentes e Claude Code
 
 Material introdutorio para engenharia sobre uso pratico de IA com agentes.
 
@@ -29,12 +29,22 @@ O julgamento tecnico continua humano.
 - Debugging e desenvolvimento.
 - Comunicacao tecnica clara.
 
-## Por que OpenCode?
-- Trabalha no codigo local.
-- Entende arquivos, historico e diff.
-- Permite padronizar agentes e skills.
+## Modelos disponiveis (maio 2026)
+Os modelos Claude operam em tres tiers:
 
-Referencia: https://opencode.ai
+- **Opus** (maior capacidade): Claude Opus 4.7 — modelo mais capaz disponivel publicamente, com adaptive thinking e foco em coding agentivo e workflows de longa duracao.
+- **Sonnet** (equilibrio custo/performance): Claude Sonnet 4.6 — recomendado para a maioria das tarefas de desenvolvimento.
+- **Haiku** (velocidade e custo): Claude Haiku 4.5 — respostas rapidas e automacoes de alta frequencia.
+
+> Modelos mais antigos (Claude 3.x) foram ou estao sendo descontinuados. Migrar para a familia Claude 4.x.
+
+## Por que Claude Code?
+- Trabalha no codigo local, com acesso a arquivos, historico e diffs.
+- Suporta MCP para integracoes com sistemas externos.
+- Permite padronizar agentes e skills via AGENTS.md e arquivos de configuracao.
+- Disponivel como CLI (`claude`) e interface web.
+
+Referencia: https://claude.ai/code
 
 ## Fluxo de uso no dia a dia
 1. Abrir repositorio local.
@@ -44,5 +54,7 @@ Referencia: https://opencode.ai
 5. Validar sugestoes com revisao humana e testes.
 
 ## Referencias
-- OpenCode Docs: https://opencode.ai/docs
-- Guia de skills: https://blog.devgenius.io/writing-opencode-agent-skills-a-practical-guide-with-examples
+- Claude Code Docs: https://docs.anthropic.com/en/docs/claude-code
+- Modelos Claude: https://docs.anthropic.com/en/docs/about-claude/models
+- Guia de agents: `docs/agents.md`
+- Guia de skills: `docs/skills.md`

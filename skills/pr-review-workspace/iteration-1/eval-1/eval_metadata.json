@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "eval_name": "user-deletion-cascade",
+  "prompt": "Revisa esse PR pra mim: Fix user deletion not cascading to sessions",
+  "assertions": [
+    {"id": "severity-labels", "description": "Usa classificacao de severidade (Bloqueador, Alto, Medio, Baixo) nos achados"},
+    {"id": "identifies-atomicity", "description": "Identifica falta de atomicidade entre Redis e banco de dados como risco principal"},
+    {"id": "identifies-redis-keys", "description": "Aponta redis.keys() como operacao problematica em producao (O(N) / bloqueante)"},
+    {"id": "identifies-race-condition", "description": "Menciona race condition entre keys e del"},
+    {"id": "concrete-tests", "description": "Sugere testes especificos e acionaveis, nao apenas genericos"},
+    {"id": "pr-size-heuristic", "description": "Aplica estrategia correta para PR pequeno (revisao linear, foco em corretude/seguranca)"}
+  ]
+}

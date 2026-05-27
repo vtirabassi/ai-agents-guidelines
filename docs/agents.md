@@ -16,11 +16,15 @@ Cada agent combina:
 - tornar comportamento da IA previsivel e auditavel
 
 ## Catalogo atual
-- `code-reviewer`: revisao tecnica de PR e diffs
-- `security-checker`: triagem de riscos de seguranca
-- `communication`: revisao e escrita de textos em PT-BR
-- `senior-mentor`: apoio a decisoes tecnicas com trade-offs
-- `documentation`: documentacao tecnica completa de fluxos e bootstrapping de contexto inicial
+- `code-reviewer`: revisao tecnica aprofundada de PR e diffs, com priorizacao por severidade
+- `security-checker`: analise de riscos de seguranca por categoria (injecao, autorizacao, exposicao de dados, configuracao), com mitigacoes concretas
+
+## Modelos recomendados (maio 2026)
+- **Claude Opus 4.7**: tarefas complexas, agentico de longa duracao, coding avancado.
+- **Claude Sonnet 4.6**: uso geral de engenharia — equilibrio ideal entre custo e qualidade.
+- **Claude Haiku 4.5**: automacoes rapidas, alto volume, tarefas simples.
+
+Modelos Claude 3.x foram descontinuados. Usar apenas familia 4.x.
 
 ## Como criar novo agent
 1. Copiar `agents/agent-template.md`.
@@ -28,6 +32,3 @@ Cada agent combina:
 3. Conectar `rules/` e `skills/` relevantes.
 4. Testar com 2-3 cenarios reais.
 5. Publicar em PR curto.
-
-## Governanca
-- Ver `agents/governance.md` para precedencia, ownership e processo de mudanca.

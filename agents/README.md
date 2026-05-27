@@ -10,10 +10,7 @@ Agentes reutilizaveis para padronizar comportamentos de IA no time de engenharia
 ## Arquivos
 - `agents/code-reviewer.md`
 - `agents/security-checker.md`
-- `agents/communication.md`
-- `agents/senior-mentor.md`
 - `agents/agent-template.md`
-- `agents/governance.md`
 
 ## Contrato minimo de cada agente
 - Frontmatter valido (`description`, `mode`, `temperature`, `tools`)

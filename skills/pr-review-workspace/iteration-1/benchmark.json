@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "skill_name": "pr-review",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-27T02:43:03Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 49.6,
+        "tokens": 13943,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa explicitamente os rotulos (Bloqueador), (Alto), (Medio) e (Baixo) nos achados: '(Bloqueador) Ausencia de atomicidade', '(Alto) redis.keys() nao deve ser usado em producao', '(Alto) Race condition', '(Medio) Nenhuma verificacao de existencia', '(Baixo) O padrao de chave'"
+        },
+        {
+          "text": "identifies-atomicity",
+          "passed": true,
+          "evidence": "'(Bloqueador) Ausencia de atomicidade / rollback em falha parcial \u2014 perda potencial de dado ou estado inconsistente. Se redis.del(sessions) falhar apos obter as sessoes... se db.users.delete falhar apos o Redis ja ter removido as sessoes, o usuario permanece no banco mas sem sessoes'"
+        },
+        {
+          "text": "identifies-redis-keys",
+          "passed": true,
+          "evidence": "'(Alto) redis.keys() nao deve ser usado em producao com bases grandes \u2014 bloqueio do event loop do Redis. redis.keys(pattern) e uma operacao O(N) que itera sobre todas as chaves do Redis e bloqueia o servidor durante a execucao.'"
+        },
+        {
+          "text": "identifies-race-condition",
+          "passed": true,
+          "evidence": "'(Alto) Race condition: novas sessoes podem ser criadas entre o keys e o del. Existe uma janela de tempo entre redis.keys(...) e redis.del(sessions) onde uma nova sessao pode ser criada para o usuario (ex.: login concorrente).'"
+        },
+        {
+          "text": "concrete-tests",
+          "passed": true,
+          "evidence": "Seis testes especificos e acionaveis: 'Simular falha em db.users.delete (ex.: constraint violation) e verificar o estado resultante', 'Simular criacao de sessao concorrente entre o keys e o del', 'Chamar deleteUser com ID que nao existe no banco e verificar comportamento'"
+        },
+        {
+          "text": "pr-size-heuristic",
+          "passed": true,
+          "evidence": "'Escala: Pequeno (< 10 linhas de diff). Revisao linear com foco em corretude e seguranca.' \u2014 aplica explicitamente a estrategia correta para PR pequeno."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 47.9,
+        "tokens": 13977,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa classificacao explicita nos achados: '(Bloqueador) Ausencia de autorizacao', '(Bloqueador) Ausencia de autenticacao', '(Alto) paymentMethods retornado em texto plano', '(Alto) userId aceita qualquer string', '(Medio) Sem rate limiting', '(Medio) Sem log de auditoria', '(Baixo) Resposta nao tem Content-Disposition'"
+        },
+        {
+          "text": "identifies-idor",
+          "passed": true,
+          "evidence": "'O endpoint aceita req.params.id sem verificar se o usuario logado tem permissao para acessar aquele id. Um atacante autenticado pode enumerar IDs e exportar dados de todos os usuarios da base'"
+        },
+        {
+          "text": "identifies-sensitive-data",
+          "passed": true,
+          "evidence": "'(Alto) paymentMethods retornado em texto plano na resposta JSON. Dados de metodos de pagamento (possivelmente numeros de cartao, mesmo que parciais, tokens de gateway, validade) nao devem ser expostos integralmente'"
+        },
+        {
+          "text": "identifies-audit-log",
+          "passed": true,
+          "evidence": "'(Medio) Sem log de auditoria para exportacoes. Para conformidade LGPD e rastreabilidade, cada exportacao de dados pessoais deveria gerar um registro de auditoria (quem exportou, quando, para qual usuario). Ausente no diff.'"
+        },
+        {
+          "text": "identifies-auth",
+          "passed": true,
+          "evidence": "'(Bloqueador) Ausencia de autorizacao \u2014 qualquer usuario autenticado (ou nao autenticado) pode exportar dados de qualquer outro usuario.' e '(Bloqueador) Ausencia de autenticacao \u2014 endpoint pode estar publico. Nao ha middleware de autenticacao visivel no diff.'"
+        },
+        {
+          "text": "concrete-tests",
+          "passed": true,
+          "evidence": "Testes especificos listados: 'Testar que usuario autenticado nao consegue exportar dados de outro usuario (deve retornar 403)', 'Testar que requisicao sem token retorna 401', 'Testar com id invalido (string aleatoria, SQL fragment, UUID malformado)', 'Testar que paymentMethods na resposta nao contem campos que nao deveriam ser expostos'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 55.1,
+        "tokens": 14326,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa rotulos expl\u00edcitos em todos os achados: '(Bloqueador) Falha silenciosa em canais', '(Alto) `getNotifier(channel)` sem tratamento de canal desconhecido', '(Medio) Loop com I/O sequencial em vez de paralelo', '(Baixo) `notificationWorker.ts` \u2014 verificar se o worker tem mecanismo de dead-letter ou retry'"
+        },
+        {
+          "text": "pr-size-large",
+          "passed": true,
+          "evidence": "Linha 3: '**Tamanho:** Grande (~600 linhas) \u2014 revisao agrupada por area logica.' \u2014 reconhece explicitamente o tamanho grande e agrupa por area logica."
+        },
+        {
+          "text": "identifies-silent-failure",
+          "passed": true,
+          "evidence": "'(Bloqueador) Falha silenciosa em canais \u2014 o erro some sem rastro / O comentario `// falha silenciosa se canal nao disponivel` indica que excecoes lancadas por `notifier.send()` sao suprimidas. Qualquer falha de envio (rede, credencial invalida, rate limit do provedor) e perdida sem log e sem retry.'"
+        },
+        {
+          "text": "identifies-parallelization",
+          "passed": true,
+          "evidence": "'(Medio) Loop com I/O sequencial em vez de paralelo \u2014 latencia acumulada / O `await` dentro do `for...of` executa os canais em serie. Para um tenant com 3 canais, a latencia total e a soma das latencias individuais. Se os canais sao independentes, `Promise.allSettled` reduz o tempo para o canal mais lento e ainda captura erros individualmente.'"
+        },
+        {
+          "text": "identifies-tenant-cache",
+          "passed": false,
+          "evidence": "O output menciona `getTenant` apenas no contexto de ausencia de tratamento para retorno null/undefined ('(Alto) `getTenant(userId)` sem tratamento de usuario inexistente ou config ausente'). Nao menciona chamada redundante, N consultas ao banco ou ausencia de cache para `getTenant`."
+        },
+        {
+          "text": "pontos-positivos",
+          "passed": true,
+          "evidence": "Secao 'Pontos positivos' com 3 itens: 'Separacao de responsabilidades bem executada', 'Configuracao por tenant em `src/config/notifications.ts` e uma decisao arquitetural correta', 'O dispatcher itera pelos canais de forma previsivel e nao mescla logica de envio com logica de roteamento.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 47.9,
+        "tokens": 12678,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa explicitamente os rotulos (Bloqueador), (Alto), (Medio) e (Baixo) nos achados: '(Bloqueador) Ausencia de atomicidade', '(Alto) Race condition', '(Alto) redis.keys e bloqueante', '(Medio) Ausencia de tratamento de erro', '(Medio) Falta de idempotencia', '(Baixo) O pattern session:${userId}:*'"
+        },
+        {
+          "text": "identifies-atomicity",
+          "passed": true,
+          "evidence": "'(Bloqueador) Ausencia de atomicidade / rollback entre Redis e banco de dados \u2014 Se redis.del(sessions) for bem-sucedido mas db.users.delete falhar (ex: erro de constraint, timeout), o usuario continuara existindo no banco sem sessoes ativas, corrompendo o estado da aplicacao.'"
+        },
+        {
+          "text": "identifies-redis-keys",
+          "passed": true,
+          "evidence": "'(Alto) redis.keys e bloqueante e nao recomendado em producao \u2014 O comando KEYS no Redis e O(N) e bloqueia o servidor enquanto varre todas as chaves. Em instancias com muitas chaves, isso pode causar latencia para todos os clientes Redis durante a execucao.'"
+        },
+        {
+          "text": "identifies-race-condition",
+          "passed": true,
+          "evidence": "'(Alto) Race condition: novas sessoes criadas entre redis.keys e redis.del \u2014 Se o usuario (ou um processo concorrente) criar uma nova sessao no intervalo entre a listagem das chaves e a exclusao, essa sessao nao sera removida e continuara valida apos a exclusao do usuario.'"
+        },
+        {
+          "text": "concrete-tests",
+          "passed": true,
+          "evidence": "Checklist com testes especificos: 'Teste de falha: simular falha no db.users.delete apos redis.del bem-sucedido \u2014 verificar o comportamento', 'Teste de concorrencia: verificar comportamento quando uma nova sessao e criada durante a execucao de deleteUser', 'Simular Redis indisponivel \u2014 verificar que o erro e propagado corretamente'"
+        },
+        {
+          "text": "pr-size-heuristic",
+          "passed": false,
+          "evidence": "O output nao menciona o tamanho do PR nem aplica explicitamente a estrategia de revisao linear para PRs pequenos com foco em corretude/seguranca. Nao ha indicacao de escala ou heuristica de tamanho no texto."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 54.1,
+        "tokens": 12790,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa classificacao nos achados: '(Bloqueador) Sem autenticacao nem autorizacao', '(Bloqueador) Dados de pagamento expostos na resposta bruta', '(Alto) Ausencia de rate limiting', '(Alto) userId nao validado', '(Alto) Ausencia de log de auditoria', '(Medio) Resposta nao e sanitizada', '(Medio) Sem paginacao', '(Baixo) Handler assincrono sem try/catch'"
+        },
+        {
+          "text": "identifies-idor",
+          "passed": true,
+          "evidence": "'qualquer usuario autenticado (ou nao, dependendo do middleware global) pode requisitar os dados de qualquer outro usuario apenas conhecendo o id. Um atacante que enumere IDs consegue exportar dados pessoais, financeiros e enderecos de qualquer conta.'"
+        },
+        {
+          "text": "identifies-sensitive-data",
+          "passed": true,
+          "evidence": "'(Bloqueador) Dados de pagamento expostos na resposta bruta \u2014 paymentMethods retornado diretamente do banco provavelmente inclui numeros de cartao (mesmo que parciais/tokenizados), CVV hasheados, tokens de gateway ou outros dados PCI-DSS. Expor esses campos em um endpoint de exportacao \u2014 sem filtragem explicita \u2014 representa risco legal e de seguranca grave.'"
+        },
+        {
+          "text": "identifies-audit-log",
+          "passed": true,
+          "evidence": "'(Alto) Ausencia de log de auditoria \u2014 a LGPD e boas praticas de compliance exigem rastreabilidade de acesso a dados pessoais. Nao ha nenhum registro de quem solicitou a exportacao, quando e para qual usuario. Sem isso, nao e possivel detectar abuso nem responder a incidentes.'"
+        },
+        {
+          "text": "identifies-auth",
+          "passed": true,
+          "evidence": "'(Bloqueador) Sem autenticacao nem autorizacao no endpoint \u2014 qualquer usuario autenticado (ou nao, dependendo do middleware global) pode requisitar os dados de qualquer outro usuario apenas conhecendo o id.'"
+        },
+        {
+          "text": "concrete-tests",
+          "passed": true,
+          "evidence": "Checklist especifico com itens acionaveis: '[ ] Testar acesso com usuario nao autenticado \u2014 deve retornar 401', '[ ] Testar acesso de usuario autenticado tentando exportar dados de outro usuario \u2014 deve retornar 403', '[ ] Verificar que nenhum campo sensivel (passwordHash, dados PCI) aparece na resposta', '[ ] Verificar que o log de auditoria e gravado em toda requisicao ao endpoint', '[ ] Testar com id invalido (nao-UUID, string vazia, SQL injection basico) \u2014 deve retornar erro controlado, nao 500'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 50.7,
+        "tokens": 12907,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "severity-labels",
+          "passed": true,
+          "evidence": "Usa rotulos expl\u00edcitos em todos os achados: '(Bloqueador) Falha silenciosa no loop de canais', '(Alto) Consulta ao tenant dentro da funcao de envio sem cache', '(Medio) Ausencia de logs/observabilidade por canal', '(Baixo) O loop `for...of` com `await` processa canais em serie'"
+        },
+        {
+          "text": "pr-size-large",
+          "passed": false,
+          "evidence": "O output nao menciona o tamanho do PR nem indica agrupamento por area logica antes de revisar. Vai direto para o resumo e pontos de atencao sem caracterizar o PR como grande."
+        },
+        {
+          "text": "identifies-silent-failure",
+          "passed": true,
+          "evidence": "'(Bloqueador) Falha silenciosa no loop de canais \u2014 se `getNotifier(channel)` retornar `null`/`undefined` ou o `notifier.send()` lanciar uma excecao, o erro e engolido e os canais subsequentes podem nao ser processados... O comentario no diff diz \"falha silenciosa se canal nao disponivel\", mas isso significa que uma notificacao critica pode simplesmente desaparecer sem que ninguem saiba.'"
+        },
+        {
+          "text": "identifies-parallelization",
+          "passed": true,
+          "evidence": "'(Baixo) O loop `for...of` com `await` processa canais em serie \u2014 se os canais forem independentes (o que parece ser o caso), processar em paralelo com `Promise.all` ou `Promise.allSettled` reduziria a latencia total de envio. Para usuarios com 3 canais habilitados, o tempo de resposta e a soma dos 3 envios ao inves do maior deles.'"
+        },
+        {
+          "text": "identifies-tenant-cache",
+          "passed": true,
+          "evidence": "'(Alto) Consulta ao tenant dentro da funcao de envio sem cache \u2014 `getTenant(userId)` e chamada a cada invocacao de `sendNotification`. Se o worker processar um burst de notificacoes para o mesmo usuario/tenant, isso gera N consultas identicas ao banco/cache externo. Dependendo do volume, isso pode ser um gargalo critico.'"
+        },
+        {
+          "text": "pontos-positivos",
+          "passed": true,
+          "evidence": "Secao 'Pontos positivos' com 3 itens: 'Boa separacao de responsabilidades: cada canal tem seu proprio notifier dedicado', 'A configuracao por tenant permite ativar/desativar canais sem deploy', 'O dispatcher e simples de entender e de estender com novos canais no futuro.'"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "new_skill": {
+      "pass_rate": {
+        "mean": 0.9444,
+        "stddev": 0.0962,
+        "min": 0.8333,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 50.8667,
+        "stddev": 3.7634,
+        "min": 47.9,
+        "max": 55.1
+      },
+      "tokens": {
+        "mean": 14082.0,
+        "stddev": 211.9929,
+        "min": 13943,
+        "max": 14326
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8889,
+        "stddev": 0.0962,
+        "min": 0.8333,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 50.9,
+        "stddev": 3.1048,
+        "min": 47.9,
+        "max": 54.1
+      },
+      "tokens": {
+        "mean": 12791.6667,
+        "stddev": 114.5091,
+        "min": 12678,
+        "max": 12907
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.06",
+      "time_seconds": "-0.0",
+      "tokens": "+1290"
+    }
+  },
+  "notes": []
+}
