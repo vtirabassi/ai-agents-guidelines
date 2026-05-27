@@ -16,7 +16,7 @@ Padronizar comunicacao tecnica para respostas claras, acionaveis e consistentes 
 
 ## Excecoes
 - Jargao tecnico pode ser usado quando for padrao do time e reduzir ambiguidade.
-- Emoji pode ser usado apenas em contexto explicitamente informal.
+- Emoji e proibido por padrao; usar apenas se o usuario solicitar explicitamente.
 
 ## Checklist de conformidade
 - A resposta esta em PT-BR (se nao houver instrucao contraria)?

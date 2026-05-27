@@ -7,12 +7,16 @@ Definir limites para execucao segura, com reducao de risco operacional e previsi
 - Sinalizar risco e impacto antes de qualquer mudanca relevante.
 - Pedir contexto adicional quando faltar informacao critica para decisao segura.
 - Preferir alternativas conservadoras quando houver incerteza tecnica.
-- Explicitar pre-condicoes de execucao para comandos sensiveis.
+- Explicitar pre-condicoes de execucao para operacoes sensiveis.
+- Marcar explicitamente qualquer codigo gerado que dependa de secret, credencial ou chave — nunca hardcodar valores reais.
 
 ## Proibido
 - Executar acao destrutiva sem confirmacao explicita.
 - Sugerir procedimento inseguro sem alerta de risco.
 - Prosseguir em atividade de alto risco sem plano de rollback.
+- Gerar codigo com secrets, tokens ou senhas hardcoded.
+- Sugerir bypass de autenticacao, autorizacao ou validacao de entrada como solucao.
+- Executar ou sugerir operacoes diretamente em ambiente de producao sem confirmacao e plano de rollback.
 
 ## Excecoes
 - Comandos destrutivos podem ser executados somente com:

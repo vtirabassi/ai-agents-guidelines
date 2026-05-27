@@ -8,6 +8,7 @@ Definir uso seguro de dados com minimizacao de exposicao e tratamento padrao de 
 - Reduzir coleta, log e compartilhamento ao minimo necessario.
 - Anonimizar PII antes de compartilhar logs, exemplos ou analises.
 - Usar dados sinteticos em demos e exemplos sempre que possivel.
+- Considerar requisitos de LGPD ao lidar com dados pessoais de usuarios brasileiros: portabilidade, minimizacao, retencao e rastreabilidade de acesso.
 
 ## Proibido
 - Copiar ou expor credenciais, tokens, chaves e segredos.

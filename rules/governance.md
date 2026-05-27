@@ -6,7 +6,8 @@ Definir precedencia, ownership e processo de evolucao das rules para manter cons
 ## Precedencia
 1. `safety.md`
 2. `data.md`
-3. `tone.md`
+3. `governance.md`
+4. `tone.md`
 
 Em caso de conflito, aplicar a regra de maior precedencia.
 
